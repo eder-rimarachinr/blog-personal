@@ -4,12 +4,20 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Post extends Model
 {
     use HasFactory;
     use Sluggable;
 
+    protected $fillable = [
+        'title',
+        'body',
+        'image',
+        'iframe',
+        'user_id'
+    ];
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -25,8 +33,13 @@ class Post extends Model
         ];
     }
 
-    public function User()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsto(User::class);
+    }
+
+    public function getGetExcerptAttribute()
+    {
+        return substr($this->body,0,140);
     }
 }

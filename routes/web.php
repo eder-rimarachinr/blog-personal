@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Auth;
+use App\http\Controllers\Backend\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [PostController::class]);
-Route::get('/blog/{post:slug}', [PostController::class],'post')->name('post');
+Route::get('/', [PageController::class, 'posts']);
+Route::get('/blog/{post:slug}', [PageController::class,'post'])->name('post');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('posts', PostController::class)->middleware('auth')->except('show');
