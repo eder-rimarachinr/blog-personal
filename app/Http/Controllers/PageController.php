@@ -9,7 +9,7 @@ class PageController extends Controller
 {
     public function posts()
     {
-        //return view('posts',compact('posts')); //retornar todos los posts
+        // return view('posts',compact('users')); //retornar todos los posts
 
         return view('posts',[
             'posts' => Post::with('user')->latest()->paginate()

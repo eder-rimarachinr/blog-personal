@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -16,9 +17,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->get();
+        //$posts = Post::latest()->get();
+        $user_id = auth()->user()->id;
+        $user =User::find($user_id);
 
-        return view('posts.index',compact('posts'));
+        return view('posts.index',[
+            'posts' => Post::where('user_id',$user->id)->latest()->paginate()
+        ]);
     }
 
     /**

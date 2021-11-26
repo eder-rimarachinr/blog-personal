@@ -11,19 +11,16 @@
                                 <img src="{{$post->get_image}}"
                                     class="card-img-top">
                             </div>
-                         @elseif($post->iframe)
-                            <div class="embed-responsive embed-responsive-16by9">
-                                {!! $post->iframe !!}
-                            </div>
-                        @endif
+                         @endif
                        <h5 class="card-title mt-3"> {{ $post->title }} </h5>
-                       <p class="card_text">
-                            {{ $post->body }}
-                            @if($post->iframe )
+                       @if($post->iframe )
                                 <div class="mx-auto col-6 embed-responsive embed-responsive-16by9">
                                     {!! $post->iframe !!}
                                 </div>
                             @endif
+                       <p class="card_text">
+                            {{ $post->body }}
+
                        </p>
                        <p class="text-muted mb-0">
                             <em>

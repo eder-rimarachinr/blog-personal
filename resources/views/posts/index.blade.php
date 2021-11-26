@@ -27,8 +27,8 @@
                         <tbody>
                             @foreach ($posts as $post)
                             <tr>
-                                <td> {{ $post->id }} </td>
-                                <td> {{ $post->title }} </td>
+
+                                <td class=" col-10"> {{ $post->title }} </td>
                                 <td>
                                     <a href=" {{ route('posts.edit', $post) }} " class="btn btn-sm btn-primary">Editar</a>
                                 </td>
