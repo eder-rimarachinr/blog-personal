@@ -6,9 +6,24 @@
         <div class="col-md-8">
                 <div class="card">
                     <div class="card-body mb-4">
-                       <h5 class="card-title"> {{ $post->title }} </h5>
+                        @if ($post->image)
+                            <div class="embed-responsive-21by9">
+                                <img src="{{$post->get_image}}"
+                                    class="card-img-top">
+                            </div>
+                         @elseif($post->iframe)
+                            <div class="embed-responsive embed-responsive-16by9">
+                                {!! $post->iframe !!}
+                            </div>
+                        @endif
+                       <h5 class="card-title mt-3"> {{ $post->title }} </h5>
                        <p class="card_text">
                             {{ $post->body }}
+                            @if($post->iframe )
+                                <div class="mx-auto col-6 embed-responsive embed-responsive-16by9">
+                                    {!! $post->iframe !!}
+                                </div>
+                            @endif
                        </p>
                        <p class="text-muted mb-0">
                             <em>
